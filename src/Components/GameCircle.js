@@ -1,13 +1,15 @@
 import React from 'react'
 
-const onClick = () => {
-    alert("clicked!");
+const onClick = (id) => {
+    alert("clicked!" + id);
 }
 
-const GameCircle = () => {
+const GameCircle = ({id, color, children}) => {
+
   return (
-    <div onClick={onClick}>
-        GameCircle
+    <div className='gameCircle' style={id % 2 === 0 ? 
+    {backgroundColor: 'blue'} : {backgroundColor: 'red'}} onClick={() => onClick(id)}>
+        {children}
     </div>
   )
 }
