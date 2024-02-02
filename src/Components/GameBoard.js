@@ -9,16 +9,18 @@ const PLAYER_2 = 2;
 
 const GameBoard = () => {
 
-    const [gameBoard, setgameBoard] = useState(Array(16).fill(NO_PLAYER));
+    const [gameBoard, setGameBoard] = useState(Array(16).fill(NO_PLAYER));
     const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1)
     console.log(gameBoard);
 
     const circleClicked = (id) => {
         console.log("circle clicked" + id);
 
-        const board = [...gameBoard];
-        board[id] = currentPlayer;
-        setgameBoard(board);
+        const nextBoard = gameBoard.map((circle, pos) => {
+            if (pos === id) return currentPlayer;
+            return circle;
+        })
+        setGameBoard(nextBoard)
 
         setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1);
 
