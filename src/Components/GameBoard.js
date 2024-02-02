@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import '../Game.css'
 import GameCircle from "./GameCircle";
 
+
+const No_CIRCLES = 16;
 const NO_PLAYER = 0;
 const PLAYER_1 = 1;
 const PLAYER_2 = 2;
@@ -13,6 +15,14 @@ const GameBoard = () => {
     const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1)
     console.log(gameBoard);
 
+    const initBoard = () => {
+        const circles = [];
+
+        for(let i = 0; i < No_CIRCLES; i++) {
+            circles.push(renderCircle(i))
+        }
+        return circles;
+    }
     const circleClicked = (id) => {
         console.log("circle clicked" + id);
 
@@ -36,9 +46,7 @@ const GameBoard = () => {
 
     return (
         <div className="gameBoard">
-            {Array.from({length:16}).map((_,index) => (
-                renderCircle(index)
-            ))}        
+            {initBoard()}        
         </div>
     )
 }
