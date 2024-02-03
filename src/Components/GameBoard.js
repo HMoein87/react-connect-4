@@ -43,7 +43,7 @@ const GameBoard = () => {
 
     return (
         <>
-            <Header />
+            <Header player={currentPlayer}/>
             <div className="gameBoard">
                 {initBoard()}        
             </div>
