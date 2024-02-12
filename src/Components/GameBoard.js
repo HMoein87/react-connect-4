@@ -39,6 +39,7 @@ const GameBoard = () => {
     const circleClicked = (id) => {
 
         if (gameBoard[id] !== NO_PLAYER) return;
+        if (gameState !== GAME_STATE_PLAYING) return;
 
         if (isWinner(gameBoard, id, currentPlayer)) {
             setGAmeState(GAME_STATE_WIN);
