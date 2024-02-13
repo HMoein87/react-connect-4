@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import '../Game.css'
 import GameCircle from "./GameCircle";
@@ -22,6 +22,13 @@ const GameBoard = () => {
     const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
     const [gameState, setGAmeState] = useState(GAME_STATE_PLAYING);
     const [ winnerPlayer, setWinnerPlayer] = useState(NO_PLAYER);
+
+    useEffect(() => {initGame()}, []);
+
+    const initGame = () => {
+        setGameBoard(Array(16).fill(NO_PLAYER));
+        setCurrentPlayer(PLAYER_1);
+    }
 
     const initBoard = () => {
         const circles = [];
@@ -66,7 +73,7 @@ const GameBoard = () => {
         <>
             <Header gameState={gameState} currentPlayer={currentPlayer} winnerPlayer={winnerPlayer}/>
             <div className="gameBoard">{initBoard()}</div>
-            <Footer />
+            <Footer onClickEvent={initGame} />
         </>
     )
 }
