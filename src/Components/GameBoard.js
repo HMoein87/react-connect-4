@@ -28,6 +28,7 @@ const GameBoard = () => {
     const initGame = () => {
         setGameBoard(Array(16).fill(NO_PLAYER));
         setCurrentPlayer(PLAYER_1);
+        setGAmeState(GAME_STATE_PLAYING);
     }
 
     const initBoard = () => {
