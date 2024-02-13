@@ -74,7 +74,7 @@ const GameBoard = () => {
         <>
             <Header gameState={gameState} currentPlayer={currentPlayer} winnerPlayer={winnerPlayer}/>
             <div className="gameBoard">{initBoard()}</div>
-            <Footer onClickEvent={initGame} />
+            <Footer onNewGameClick={initGame} />
         </>
     )
 }
