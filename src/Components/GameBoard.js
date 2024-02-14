@@ -9,12 +9,12 @@ import { isDraw, isWinner } from "../winner";
 import { getComputerMove } from "../ComputerPlayer";
 import {
     GAME_STATE_PLAYING,
+    GAME_STATE_DRAW,
     GAME_STATE_WIN,
     NO_PLAYER,
     PLAYER_1,
     PLAYER_2,
     No_CIRCLES,
-    GAME_STATE_DRAW,
 } from "../Constants";
 
 const GameBoard = () => {
@@ -79,7 +79,7 @@ const GameBoard = () => {
         <>
             <Header gameState={gameState} currentPlayer={currentPlayer} winnerPlayer={winnerPlayer}/>
             <div className="gameBoard">{initBoard()}</div>
-            <Footer onNewGameClick={initGame} onSuggestClick={suggestMove} />
+            <Footer onNewGameClick={initGame} onSuggestClick={suggestMove} gameState={gameState} />
         </>
     )
 }
