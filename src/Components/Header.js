@@ -6,7 +6,11 @@ import {
   GAME_STATE_WIN,
 } from "../Constants";
 
+//header component
+//this component displays the game state and the player turn
 const Header = ({gameState, currentPlayer, winnerPlayer}) => {
+
+  //checks the game state to display the right label
   const renderLabel = () => {
     switch (gameState) {
       case GAME_STATE_PLAYING:

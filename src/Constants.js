@@ -1,3 +1,5 @@
+
+//number of total circles in the game
 export const No_CIRCLES = 16;
 
 export const NO_PLAYER = 0;
