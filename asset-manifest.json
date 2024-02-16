@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/github.io/react-connect-4/static/css/main.3c11ec43.css",
+    "main.js": "/github.io/react-connect-4/static/js/main.996903d7.js",
+    "index.html": "/github.io/react-connect-4/index.html",
+    "main.3c11ec43.css.map": "/github.io/react-connect-4/static/css/main.3c11ec43.css.map",
+    "main.996903d7.js.map": "/github.io/react-connect-4/static/js/main.996903d7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c11ec43.css",
+    "static/js/main.996903d7.js"
+  ]
+}
