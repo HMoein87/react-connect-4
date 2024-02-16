@@ -15,6 +15,7 @@ import {
     PLAYER_1,
     PLAYER_2,
     No_CIRCLES,
+    GAME_STATE_IDLE,
 } from "../Constants";
 
 //GameBoard component
@@ -24,7 +25,8 @@ const GameBoard = () => {
     const [gameBoard, setGameBoard] = useState(Array(No_CIRCLES).fill(NO_PLAYER));
     const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
     const [gameState, setGAmeState] = useState(GAME_STATE_PLAYING);
-    const [ winnerPlayer, setWinnerPlayer] = useState(NO_PLAYER);
+    const [winnerPlayer, setWinnerPlayer] = useState(NO_PLAYER);
+    const [playerNumber, setPlayerNumber] = useState(NO_PLAYER);
 
     //initialize the game after clicking New Game button using initGame function
     useEffect(() => {initGame()}, []);
@@ -33,7 +35,19 @@ const GameBoard = () => {
     const initGame = () => {
         setGameBoard(Array(No_CIRCLES).fill(NO_PLAYER));
         setCurrentPlayer(PLAYER_1);
+        setGAmeState(GAME_STATE_IDLE);
+    }
+
+    //initialize the game for one player against computer game
+    const onePlayer =  () => {
         setGAmeState(GAME_STATE_PLAYING);
+        setPlayerNumber(PLAYER_1);
+    }
+
+    //initialize the game for two players game
+    const twoPlayers = () => {
+        setGAmeState(GAME_STATE_PLAYING);
+        setPlayerNumber(PLAYER_2);
     }
 
     //create and initialize the board
@@ -54,7 +68,6 @@ const GameBoard = () => {
 
     //handles click on a circle and check the state of the game after each click
     const circleClicked = (id) => {
-
         //check if the circle is not clicked already
         if (gameBoard[id] !== NO_PLAYER) return;
         //check if the game state is playing
@@ -84,17 +97,20 @@ const GameBoard = () => {
         //update the player after one click
         setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1);
     }
-    
-    //present computer move
-    const suggestMove = () => {
-        circleClicked(getComputerMove(gameBoard));
+
+    //check number of players and generate computer move
+    if (playerNumber === PLAYER_1 && currentPlayer === PLAYER_2) {
+        setCurrentPlayer("Computer");
+        setTimeout(() => {circleClicked(getComputerMove(gameBoard))}, 1000);
     }
 
     return (
         <>
-            <Header gameState={gameState} currentPlayer={currentPlayer} winnerPlayer={winnerPlayer}/>
+            <Header gameState={gameState} currentPlayer={currentPlayer} winnerPlayer={winnerPlayer}
+                onOnePlayerClick={onePlayer} onTwoPlayerClick={twoPlayers} playerNumber={playerNumber}
+            />
             <div className="gameBoard">{initBoard()}</div>
-            <Footer onNewGameClick={initGame} onSuggestClick={suggestMove} gameState={gameState} />
+            <Footer onNewGameClick={initGame} gameState={gameState} />
         </>
     )
 }
